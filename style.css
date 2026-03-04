@@ -5,13 +5,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* General Styling */
 body {
     background-color: #f4f6f8;
     color: #333;
 }
 
-/* Header */
 header {
     background-color: #4f46e5;
     color: white;
@@ -19,7 +17,6 @@ header {
     text-align: center;
 }
 
-/* Navigation */
 nav {
     background-color: #1f2937;
     text-align: center;
@@ -37,14 +34,12 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Container */
 .container {
     max-width: 1000px;
     margin: 30px auto;
     padding: 20px;
 }
 
-/* Projects Section */
 .projects-grid {
     display: flex;
     gap: 20px;
@@ -59,13 +54,16 @@ nav a:hover {
     min-width: 250px;
 }
 
+.project-card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
 .project-card a {
     color: #4f46e5;
     text-decoration: none;
-    font-weight: 500;
 }
 
-/* Contact Form */
 form {
     display: flex;
     flex-direction: column;
@@ -84,13 +82,21 @@ button {
     padding: 10px;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 button:hover {
     background-color: #3730a3;
 }
 
-/* Footer */
+.delete-btn {
+    margin-left: 10px;
+    background-color: red;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
 footer {
     background-color: #1f2937;
     color: white;
@@ -98,7 +104,6 @@ footer {
     padding: 15px;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     .projects-grid {
         flex-direction: column;
