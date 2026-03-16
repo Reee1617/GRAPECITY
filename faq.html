@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple FAQ - OOP JavaScript</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 40px;
+    }
+
+    .faq-box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .question {
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .question:hover {
+      background-color: #eee;
+    }
+
+    .answer {
+      display: none;
+      padding: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Frequently Asked Questions</h2>
+
+  <div class="faq-box" id="faq"></div>
+
+  <script>
+    // ===== SIMPLE QAItem CLASS =====
+    class QAItem {
+      constructor(question, answer) {
+        this.question = question;
+        this.answer = answer;
+      }
+
+      render() {
+        // Create question element
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "question";
+        questionDiv.textContent = this.question;
+
+        // Create answer element
+        const answerDiv = document.createElement("div");
+        answerDiv.className = "answer";
+        answerDiv.textContent = this.answer;
+
+        // Click event
+        questionDiv.addEventListener("click", function () {
+          if (answerDiv.style.display === "none") {
+            answerDiv.style.display = "block";
+          } else {
+            answerDiv.style.display = "none";
+          }
+        });
+
+        // Container for one Q&A
+        const wrapper = document.createElement("div");
+        wrapper.appendChild(questionDiv);
+        wrapper.appendChild(answerDiv);
+
+        return wrapper;
+      }
+    }
+
+    // ===== CREATE OBJECTS =====
+    const faqList = [
+      new QAItem(
+        "What is JavaScript?",
+        "JavaScript is a programming language used to make websites interactive."
+      ),
+      new QAItem(
+        "What is OOP?",
+        "OOP stands for Object-Oriented Programming. It helps organize code using objects."
+      ),
+      new QAItem(
+        "How does this FAQ work?",
+        "When you click a question, JavaScript shows or hides the answer."
+      )
+    ];
+
+    // ===== DISPLAY FAQ =====
+    const faqContainer = document.getElementById("faq");
+
+    faqList.forEach(function (item) {
+      faqContainer.appendChild(item.render());
+    });
+  </script>
+
+</body>
+</html>
