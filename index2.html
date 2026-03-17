@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+        
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+header {
+    background-color: #4f46e5;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+nav {
+    background-color: #1f2937;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.projects-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+.project-card a {
+    color: #4f46e5;
+    text-decoration: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4f46e5;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #3730a3;
+}
+
+.delete-btn {
+    margin-left: 10px;
+    background-color: red;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+@media (max-width: 600px) {
+    .projects-grid {
+        flex-direction: column;
+    }
+}
+</style>
+
+</head>
+<body>
+
+        <header>
+        <h1>RIYA GUPTA </h1>
+        <p>Web Developer | Student | Learner</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav> 
+         <section id="home" class="container">
+        <h2>My Hobby: Coding</h2>
+        <p>
+            Coding is my favorite hobby because it allows me to create websites,
+            solve problems, and improve logical thinking.
+        </p>
+
+        <input id="benefitInput" type="text" placeholder="Add new benefit">
+        <button id="addBenefitBtn" type="button">Add</button>
+
+        <ol id="hobbyList">
+            <li>Improves problem-solving skills</li>
+            <li>Boosts creativity</li>
+            <li>Good career opportunities</li>
+        </ol>
+    </section>
+
+       <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>
+            I am a passionate learner interested in web development.
+            I enjoy building websites using HTML and CSS.
+        </p>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Projects</h2>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Project One</h3>
+                <p>Simple HTML website.</p>
+                <a href="#">View Project</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Project Two</h3>
+                <p>Portfolio webpage using CSS.</p>
+                <a href="#">View Project</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Project Three</h3>
+                <p>Responsive landing page.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>  
+    </section>  
+
+    <section id="contact" class="container">
+        <h2>Contact Me</h2>
+
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+    <p>Connect with me:</p>
+    <a href="https://www.linkedin.com/in/riya-gupta-a43642379" target="_blank">LinkedIn</a> |
+    <a href="https://github.com/Reee1617" target="_blank">GitHub</a>
+    <p id="dateTime"></p>
+</footer>
+   <script>
+
+// Handle clicking the "Add" button to add a new hobby benefit
+var addBenefitButton = document.getElementById("addBenefitBtn");
+var benefitInputField = document.getElementById("benefitInput");
+var hobbyListElement = document.getElementById("hobbyList");
+
+addBenefitButton.onclick = function(){
+    if(benefitInputField.value !== ""){
+        var listItem = document.createElement("li");
+        listItem.innerText = benefitInputField.value;
+
+        var deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.className = "delete-btn";
+
+        deleteButton.onclick = function(){
+            listItem.remove();
+        };
+
+        listItem.appendChild(deleteButton);
+        hobbyListElement.appendChild(listItem);
+        benefitInputField.value = "";
+    }
+};
+
+// Allow deleting any benefits that already have a delete button
+var deleteButtons = document.getElementsByClassName("delete-btn");
+for(var i = 0; i < deleteButtons.length; i++){
+    deleteButtons[i].onclick = function(){
+        this.parentElement.remove();
+    };
+}
+
+// Show an alert when the contact form is submitted (and stop page reload)
+document.getElementById("contactForm").onsubmit = function(e){
+    e.preventDefault();
+    alert("Form submitted successfully!");
+};
+
+// Show the current date and time in the footer and update it every second
+function showDateTime(){
+    var now = new Date();
+    document.getElementById("dateTime").innerText = now.toLocaleString();
+}
+
+showDateTime();
+setInterval(showDateTime, 1000);
+
+</script>
+
+</body>
+</html>
